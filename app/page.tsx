@@ -1,6 +1,9 @@
 const Home = () => {
   return (
-    <h1>Helo World</h1>
+    <div className="w-screen  items-center flex">
+
+      <h1>Helo World</h1>
+    </div>
   )
 }
 
