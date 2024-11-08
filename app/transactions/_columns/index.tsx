@@ -5,28 +5,10 @@ import TransactionTypeBadge from "../_components/type-bagde";
 import { Transaction } from "@prisma/client";
 import { Button } from "@/app/_components/ui/button";
 import { PencilIcon, TrashIcon } from "lucide-react";
-
-export const TRANSACTION_CATEGORY_LABELS = {
-  EDUCATION: "Educação",
-  ENTERTAINMENT: "Entretenimento",
-  FOOD: "Alimentação",
-  HEALTH: "Saúde",
-  HOUSING: "Moradia",
-  OTHER: "Outros",
-  SALARY: "Salário",
-  TRANSPORTATION: "Transporte",
-  UTILITY: "Utilidades",
-};
-
-export const TRANSACTION_PAYMENT_METHOD_LABELS = {
-  BANK_TRANSFER: "Transferência Bancária",
-  CREDIT_CARD: "Cartão de Crédito",
-  DEBIT_CARD: "Cartão de Débito",
-  BANK_SLIP: "Boleto Bancário",
-  CASH: "Dinheiro",
-  PIX: "Pix",
-  OTHER: "Outros",
-};
+import {
+  TRANSACTION_CATEGORY_LABELS,
+  TRANSACTION_PAYMENT_METHOD_LABELS,
+} from "@/app/_components/_constants/transaction";
 
 export const transactionColumns: ColumnDef<Transaction>[] = [
   {
