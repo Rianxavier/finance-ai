@@ -1,11 +1,12 @@
 import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 import AddTransactionButton from "../_components/add-transaction-button";
 import NavBar from "../_components/navbar";
 import { DataTable } from "../_components/ui/data-table";
+import { ScrollArea } from "../_components/ui/scroll-area";
+import { canUserAddTransaction } from "../_data/can-user-add-transaction";
 import { db } from "../_lib/prisma";
 import { transactionColumns } from "./_columns";
-import { redirect } from "next/navigation";
-import { ScrollArea } from "../_components/ui/scroll-area";
 
 const TransactionsPage = async () => {
   const { userId } = await auth();
@@ -17,7 +18,7 @@ const TransactionsPage = async () => {
       userId,
     },
   });
-
+  const userCanAddTransaction = await canUserAddTransaction();
   return (
     <>
       <NavBar />
@@ -25,7 +26,7 @@ const TransactionsPage = async () => {
         {/* TITULO E BOTÃO */}
         <div className="flex w-full items-center justify-between">
           <h1 className="text-2xl font-bold">Transações</h1>
-          <AddTransactionButton />
+          <AddTransactionButton userCanAddTransaction={userCanAddTransaction} />
         </div>
         <ScrollArea>
           <DataTable

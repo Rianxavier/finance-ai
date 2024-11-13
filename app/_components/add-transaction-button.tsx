@@ -3,20 +3,43 @@
 import { useState } from "react";
 import UpsurtTransactionDialog from "./upsurt-transaction-dialog";
 import { Button } from "./ui/button";
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+  TooltipProvider,
+} from "./ui/tooltip";
 import { ArrowDownUpIcon } from "lucide-react";
 
-const AddTransactionButton = () => {
+interface AddTransactionButtonProps {
+  userCanAddTransaction?: boolean;
+}
+
+const AddTransactionButton = ({
+  userCanAddTransaction,
+}: AddTransactionButtonProps) => {
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
 
   return (
     <>
-      <Button
-        className="rounded-full font-bold"
-        onClick={() => setDialogIsOpen(true)}
-      >
-        Adicionar transação
-        <ArrowDownUpIcon />
-      </Button>
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger>
+            <Button
+              className="rounded-full font-bold"
+              onClick={() => setDialogIsOpen(true)}
+              disabled={!userCanAddTransaction}
+            >
+              Adicionar transação
+              <ArrowDownUpIcon />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            {!userCanAddTransaction &&
+              "Você atingiu o limite de transações. Atualize seu plano para criar transações ilimitadas"}
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
       <UpsurtTransactionDialog
         isOpen={dialogIsOpen}
         setIsOpen={setDialogIsOpen}
