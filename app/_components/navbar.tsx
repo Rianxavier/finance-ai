@@ -4,9 +4,16 @@ import { UserButton } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const NavBar = () => {
   const pathname = usePathname();
+
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   return (
     <nav className="flex justify-between border-b border-solid px-8 py-4">
@@ -46,7 +53,7 @@ const NavBar = () => {
       </div>
 
       {/* DIREITA */}
-      <UserButton showName />
+      {isClient && <UserButton showName />}
     </nav>
   );
 };
