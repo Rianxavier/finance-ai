@@ -1,36 +1,100 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# **FinanceAI - Gerenciamento de Finanças com IA**
 
-## Getting Started
+Bem-vindo ao **Finance - AI**, uma plataforma SaaS de gerenciamento de finanças que utiliza inteligência artificial para fornecer insights detalhados sobre suas finanças. Simplifique a organização de suas finanças e tome decisões melhores com informações geradas por IA.
 
-First, run the development server:
+## **Funcionalidades** 🛠️
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Gerenciamento de Finanças**: Controle completo de receitas, despesas e categorias financeiras.
+- **Insights com IA**: Relatórios automatizados e recomendações personalizadas para otimizar suas finanças.
+- **Painel Interativo**: Visualize gráficos e resumos em tempo real.
+- **Integração com Stripe**: Gerenciamento de assinaturas e pagamentos com segurança.
+- **Arquitetura Escalável**: Projetado para suportar múltiplos usuários simultaneamente com alta performance.
+
+## 🚀 **Tecnologias Utilizadas** 🔧
+
+- **Next.js**: Framework para desenvolvimento Full Stack, usado no front-end e back-end com `use server`.
+- **React**: Biblioteca para interfaces dinâmicas e reativas.
+- **TypeScript**: Tipagem estática para maior segurança e produtividade.
+- **TailwindCSS**: Framework CSS para estilização rápida e moderna.
+- **ShadCN**: Para construção de componentes reutilizáveis e acessíveis.
+- **Prisma**: ORM para interagir com o banco de dados de forma simples.
+- **PostgreSQL**: Banco de dados relacional para armazenar dados.
+- **NeonDB**: Serviço de hospedagem para PostgreSQL.
+- **Clerk**: Gerenciamento de autenticação e segurança.
+- **Stripe**: Processamento de pagamentos e assinaturas.
+- **React Markdown**: Renderização de texto em formato Markdown.
+- **Docker**: Para ambientes consistentes e portabilidade.
+
+## **Instalação** ⚙️
+
+### **Pré-requisitos** 📝
+
+- Node.js >= 16.0
+- Docker
+- Conta no NeonDB, Clerk e Stripe para configurações adicionais.
+
+### **Configuração de Variáveis de Ambiente** 🔑
+
+1. Configure as variáveis de ambiente com base no exemplo abaixo:
+
+```env
+# NeonDB (para usar NeonDB como banco de dados remoto)
+DATABASE_URL=""
+
+# Docker (para usar PostgreSQL local via Docker)
+DATABASE_URL=""
+
+# Clerk
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=""
+CLERK_SECRET_KEY=""
+
+# Stripe
+STRIPE_PREMIUM_PLAN_PRICE_ID="p"
+STRIPE_SECRET_KEY=""
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=""
+STRIPE_WEBHOOK_SECRET=""
+NEXT_PUBLIC_STRIPE_CUSTOMER_PORTAL_URL=""
+
+# OpenAI (opcional para geração de insights avançados)
+OPENAI_API_KEY=""
+
+# URL da aplicação
+APP_URL="http://localhost:3000"
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### **Escolha do Banco de Dados** 🗃️
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Para usar o **NeonDB**, configure a variável `DATABASE_URL` com o URL fornecido pela NeonDB.
+- Para usar o banco de dados **localmente via Docker**, certifique-se de que o container PostgreSQL está ativo e preencha a variável `DATABASE_URL` com a string de conexão correspondente ao seu ambiente local.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### **Passo a Passo de Instalação** 🛠️
 
-## Learn More
+1. Clone este repositório:
+   ```bash
+   git clone https://github.com/Rianxavier/finance-ai.git
+   ```
+2. Acesse o diretório do projeto:
+   ```bash
+   cd finance-ai
+   ```
+3. Instale as dependências:
+   ```bash
+   npm install
+   ```
+4. Configure as variáveis de ambiente conforme descrito acima.
+5. Inicie o banco de dados (caso esteja usando Docker):
+   ```bash
+   docker-compose up -d
+   ```
+6. Execute as migrações do Prisma:
+   ```bash
+   npx prisma migrate dev
+   ```
+7. Inicie o servidor:
+   ```bash
+   npm run dev
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+### **Acesse o aplicativo** 🌐
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Abra seu navegador e acesse [http://localhost:3000](http://localhost:3000).
